@@ -21,8 +21,6 @@ app.use(methodOverride("_method"));
 // Add the HTTP body onto the request object in all route handlers.
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// adapted from code written by Eric Lewis: https://git.generalassemb.ly/wdi-nyc-tesseract/js-user-authentication-lab/blob/solution/views/home/index.ejs
-
 // Allow the port to be set by an environment variable when run (PORT=4000 node server.js)
 // and fallback to a default to 4567 if it's not supplied.
 
@@ -98,7 +96,7 @@ function getRandomNumber(min, max) {
 }
 
 const indexOfMusician = getRandomNumber(0, 7)
-const randomNumberBand = getRandomNumber(1, 8)
+const randomNumberBand = getRandomNumber(1, 6)
 
 const printText = function (dictionary) {
   objValuesMap = Object.getOwnPropertyNames(dictionary);
@@ -106,10 +104,10 @@ const printText = function (dictionary) {
   result = [];
   for (let i = 0; i < objKeysMap.length; i++) {
     if (objKeysMap[i] === 1) {
-       result.push(`there is ${objKeysMap[i]} ${objValuesMap[i]} in this band`);
+       result.push(`there is ${objKeysMap[i]} ${objValuesMap[i]} in this band \n`);
     }
     else {
-      result.push(`there are ${objKeysMap[i]} ${objValuesMap[i]}s in this band`);
+      result.push(`there are ${objKeysMap[i]} ${objValuesMap[i]}s in this band \n`);
     }
   }
   return result
@@ -139,16 +137,17 @@ const createBand = function (numberOfMembers) {
     }
   }
 
-  
   result.band = band;
-  result.players = printText(dict);
-  // console.log(result);
+  let players = String(printText(dict));
+  let playersReplace = players.replace(/,/g,'');
+  result.players = playersReplace
   
   return result;
-
 }
 
 let band = createBand(randomNumberBand);
+// console.log(band.players);
+
 
 client.post('statuses/update', { status: `${band.band}${band.players}` }, function (error, tweet, response) {
   if (error) throw error;
