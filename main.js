@@ -96,3 +96,4 @@ const createBand = function (numberOfMembers) {
 }
 
 createBand(randomNumberBand)
+
