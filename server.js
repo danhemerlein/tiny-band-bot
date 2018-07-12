@@ -11,7 +11,7 @@ const app = express();
 const client = new Twitter({
   consumer_key: "NUqpDjlPYlv8l6NmzWZP4IMjC",
   consumer_secret: "UIAxY6hfEL0tw4d7e4vtYJTYz8V19pKx4T4qwPTKHU74fzun1L",
-  access_token_key: "838221942700273669-7TUJcv7Chbh9y0xAq0y4cd6er8rIOn",
+  access_token_key: "838221942700273669-7TUJcv7Chbh9y0xAq0y4cd6er8rIOnr",
   access_token_secret: "kNEcnfyo3BzqMnvrfhWyinFoV0Bg6lpY0N37ammfIAx1P"
 });
 
@@ -149,7 +149,7 @@ let band = createBand(randomNumberBand);
 console.log(band.band);
 
 client.post('statuses/update', { status: `\n${band.band}${band.players}` }, function (error, tweet, response) {
-  if (error) throw error;
+  // if (error) throw error;
   console.log(tweet);  // Tweet body.
   console.log(response);  // Raw response object.
 });
