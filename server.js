@@ -321,11 +321,11 @@ let band = createBand(randomNumberBand);
 console.log(band);
 console.log(band.band);
 
-// client.post('statuses/update', { status: `\n${band.band}${band.players}` }, function (error, tweet, response) {
-//   if (error) {
-//     console.log(error);
-//     throw error;
-//   }
-//   console.log(tweet);  // Tweet body.
-//   console.log(response);  // Raw response object.
-// });
+client.post('statuses/update', { status: `\n${band.band}${band.players}` }, function (error, tweet, response) {
+  if (error) {
+    console.log(error);
+    throw error;
+  }
+  console.log(tweet);  // Tweet body.
+  console.log(response);  // Raw response object.
+});
