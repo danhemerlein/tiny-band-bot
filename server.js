@@ -1,12 +1,5 @@
-
-const express = require("express");
-const path = require("path");
-const bodyParser = require("body-parser");
-const methodOverride = require("method-override");
 const keys = require('./config.js')
 const Twitter = require('twitter');
-
-const app = express();
 
 const client = new Twitter({
   consumer_key: keys.consumerKey,
@@ -15,60 +8,39 @@ const client = new Twitter({
   access_token_secret: keys.accessTokenSecret
 });
 
-// Allow override of HTTP methods based on the query string ?_method=DELETE
-app.use(methodOverride("_method"));
-
-// Add the HTTP body onto the request object in all route handlers.
-app.use(bodyParser.urlencoded({ extended: false }));
-
-// Allow the port to be set by an environment variable when run (PORT=4000 node server.js)
-// and fallback to a default to 4567 if it's not supplied.
-
-const PORT = process.env.PORT || 4567;
-
-// Serve any files in the public folder at the "/client" route.
-app.use(express.static('client'));
-
-// Set the folder for where our views are.
-app.set("views", path.join(__dirname, "views"));
-
-// Tell Express that we use EJS in our views.
-app.set("view engine", "ejs");
-
-
 const musicians = {
-  trumpetPlayer: `
+  trumpetPlayingStickFigure: `
     o
    -|-🎺
    /\\
    `,
 
-  guitarist: `
+  guitarPlayingStickFigure: `
     o
    -|-🎸
    /\\
    `,
-  pianist: `
+  pianoPlayingStickFigure: `
     o
    -|-🎹
    /\\
    `,
-  saxophonePlayer: `
+  saxophonePlayingStickFigure: `
     o
    -|-🎷
    /\\
    `,
-  violinist: `
+  violinPlayingStickFigure: `
     o
    -|-🎻
    /\\
    `,
-  drummer: `
+  drumPlayingStickFigure: `
     o
    -|-🥁
    /\\
    `,
-  vocalist: `
+  singingStickFigure: `
     o
    -|-🎤
    /\\
@@ -78,7 +50,208 @@ const musicians = {
    -|-📯
    /\\
    `,
-}
+  saxophonePlayingCaterpillar: `
+    🎷🐛
+   `,
+  singingCaterpillar: `
+    🎤🐛
+   `,
+  pianoPlayingCaterpillar: `
+    🎹🐛
+   `,
+  drumPlayingCaterpillar: `
+    🥁🐛
+   `,
+  saxophonePlayingUnicorn: `
+    🎷🦄
+   `,
+  singingUnicorn: `
+    🎤🦄
+   `,
+  pianoPlayingUnicorn: `
+    🎹🦄
+   `,
+  drumPlayingUnicorn: `
+    🥁🦄
+   `,
+  saxophonePlayingTurtle: `
+    🎷🐢
+   `,
+  singingTurtle: `
+    🎤🐢
+   `,
+  pianoPlayingTurtle: `
+    🎹🐢
+   `,
+  drumPlayingTurtle: `
+    🥁🐢
+   `,
+  saxophonePlayingDinosaur: `
+    🎷🦖
+   `,
+  singingDinosaur: `
+    🎤🦖
+   `,
+  pianoPlayingDinosaur: `
+    🎹🦖
+   `,
+  drumPlayingDinosaur: `
+    🥁🦖
+   `,
+  saxophonePlayingGiraffe: `
+    🎷🦒
+   `,
+  singingGiraffe: `
+    🎤🦒
+   `,
+  pianoPlayingGiraffe: `
+    🎹🦒
+   `,
+  drumPlayingGiraffe: `
+    🥁🦒
+   `,
+  saxophonePlayingDolphin: `
+    🎷🐬
+   `,
+  singingDolphin: `
+    🎤🐬
+   `,
+  pianoPlayingDolphin: `
+    🎹🐬
+   `,
+  drumPlayingDolphin: `
+    🥁🐬
+   `,
+  saxophonePlayingElephant: `
+    🎷🐘
+   `,
+  singingElephant: `
+    🎤🐘
+   `,
+  pianoPlayingElephant: `
+    🎹🐘
+   `,
+  drumPlayingElephant: `
+    🥁🐘
+   `,
+  saxophonePlayingDuck: `
+    🎷🦆
+   `,
+  singingDuck: `
+    🎤🦆
+   `,
+  pianoPlayingDuck: `
+    🎹🦆
+   `,
+  drumPlayingDuck: `
+    🥁🦆
+   `,
+  violinPlayingDuck: `
+    🎻🦆
+   `,
+  guitarPlayingDuck: `
+    🎸🦆
+   `,
+  saxophonePlayingTurkey: `
+    🎷🦃
+   `,
+  singingTurkey: `
+    🎤🦃
+   `,
+  pianoPlayingTurkey: `
+    🎹🦃
+   `,
+  drumPlayingTurkey: `
+    🥁🦃
+   `,
+  violinPlayingTurkey: `
+    🎻🦃
+   `,
+  guitarPlayingTurkey: `
+    🎸🦃
+   `,
+  saxophonePlayingParrot: `
+    🎷🦜
+   `,
+  singingParrot: `
+    🎤🦜
+   `,
+  pianoPlayingParrot: `
+    🎹🦜
+   `,
+  drumPlayingParrot: `
+    🥁🦜
+   `,
+  violinPlayingParrot: `
+    🎻🦜
+   `,
+  guitarPlayingParrot: `
+    🎸🦜
+   `,
+  saxophonePlayingDove: `
+    🎷🕊
+   `,
+  singingDove: `
+    🎤🕊
+   `,
+  pianoPlayingDove: `
+    🎹🕊
+   `,
+  drumPlayingDove: `
+    🥁🕊
+   `,
+  violinPlayingDove: `
+    🎻🕊
+   `,
+  guitarPlayingDove: `
+    🎸🕊
+   `,
+  saxophonePlayingBlowfish: `
+    🎷🐡
+   `,
+  singingBlowfish: `
+    🎤🐡
+   `,
+  pianoPlayingBlowfish: `
+    🎹🐡
+   `,
+  drumPlayingBlowfish: `
+    🥁🐡
+   `,
+  violinPlayingBlowfish: `
+    🎻🐡
+   `,
+  guitarPlayingBlowfish: `
+    🎸🐡
+   `,
+  saxophonePlayingCamel: `
+    🎷🐪
+   `,
+  singingCamel: `
+    🎤🐪
+   `,
+  pianoPlayingCamel: `
+    🎹🐪
+   `,
+  drumPlayingCamel: `
+    🥁🐪
+   `,
+  violinPlayingCamel: `
+    🎻🐪
+   `,
+  guitarPlayingCamel: `
+    🎸🐪
+   `,
+  postalHornPlayingSnail: `
+    🐌📯
+   `,
+  postalHornPlayingOwl: `
+    🦉📯
+   `,
+  postalHornPlayingLizzard: `
+    🦎📯
+   `
+};
 
 if (!Object.entries)
   Object.entries = function (obj) {
@@ -95,7 +268,6 @@ function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const indexOfMusician = getRandomNumber(0, 7)
 const randomNumberBand = getRandomNumber(1, 6)
 
 const printText = function (dictionary) {
@@ -122,7 +294,7 @@ const createBand = function (numberOfMembers) {
   };
 
   for (let i = 0; i < numberOfMembers; i++) {
-    const indexOfMusician = getRandomNumber(0, 7)
+    const indexOfMusician = getRandomNumber(0, (Object.keys(musicians).length - 1));
     randomIcon = Object.entries(musicians)[indexOfMusician][1];
     randomName = Object.entries(musicians)[indexOfMusician][0];
     nameArray.push(randomName);
@@ -146,11 +318,14 @@ const createBand = function (numberOfMembers) {
 }
 
 let band = createBand(randomNumberBand);
+console.log(band);
 console.log(band.band);
 
-client.post('statuses/update', { status: `\n${band.band}${band.players}` }, function (error, tweet, response) {
-  if (error) throw error;
-  console.log(tweet);  // Tweet body.
-  console.log(response);  // Raw response object.
-});
-
+// client.post('statuses/update', { status: `\n${band.band}${band.players}` }, function (error, tweet, response) {
+//   if (error) {
+//     console.log(error);
+//     throw error;
+//   }
+//   console.log(tweet);  // Tweet body.
+//   console.log(response);  // Raw response object.
+// });
